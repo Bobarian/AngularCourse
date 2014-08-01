@@ -6,7 +6,7 @@ angular.module('myApp.controllers', [])
 	.controller('LandingPageController', [function() {
 
 	}])
-	.controller('waitlistController', ['$scope', '$firebase', function($scope, $firebase) {
+	.controller('WaitlistController', ['$scope', '$firebase', function($scope, $firebase) {
 		var partiesRef = new Firebase('https://waitandeat-bob.firebaseIO.com/');
 
 		$scope.parties = $firebase(partiesRef);
@@ -14,7 +14,7 @@ angular.module('myApp.controllers', [])
 		$scope.party = {name: '', phone: '', size: ''};
 
 		$scope.saveParty = function() {
-			$scope.parties.push($scope.party);
+			$scope.parties.$add($scope.party);
 			$scope.party = {name: '', phone: '', size: ''};
 		};
 	}]);
